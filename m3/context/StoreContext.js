@@ -17,17 +17,33 @@ const initialCustomers = [
   { id: '3', nama: 'Andi Pratama', email: 'andi@gmail.com', kategori: 'Regular' },
 ];
 
+const initialPromos = [
+  { id: '1', kode: 'WELCOME10', deskripsi: 'Diskon 10% untuk pembelian pertama', diskon: 10, status: true },
+  { id: '2', kode: 'HARIINI', deskripsi: 'Promo kopi spesial hari ini', diskon: 15, status: true },
+  { id: '3', kode: 'MEMBER', deskripsi: 'Bonus member untuk pelanggan loyal', diskon: 20, status: false },
+];
+
+const initialTransactions = [
+  { id: 'T-1001', createdAt: '2025-01-14T09:15:00.000Z', total: 54000, items: [{ nama: 'Espresso Single Origin', qty: 2, harga: 18000 }] },
+  { id: 'T-1002', createdAt: '2025-01-15T14:20:00.000Z', total: 72000, items: [{ nama: 'Kopi Susu Gula Aren', qty: 2, harga: 22000 }, { nama: 'Croissant Butter', qty: 2, harga: 15000 }] },
+  { id: 'T-1003', createdAt: '2025-01-16T18:40:00.000Z', total: 47000, items: [{ nama: 'Americano Ice/Hot', qty: 1, harga: 20000 }, { nama: 'Matcha Latte Cream', qty: 1, harga: 25000 }] },
+];
+
 export function StoreProvider({ children }) {
   const [products, setProducts] = useState(initialProducts);
   const [customers, setCustomers] = useState(initialCustomers);
   const [cart, setCart] = useState([]);
   const [orders, setOrders] = useState([]);
+  const [promos, setPromos] = useState(initialPromos);
+  const [transactions, setTransactions] = useState(initialTransactions);
 
   const value = {
     products,
     customers,
     cart,
     orders,
+    promos,
+    transactions,
     addProduct: (product) => setProducts((current) => [
       { ...product, id: Date.now().toString() },
       ...current,
@@ -60,15 +76,33 @@ export function StoreProvider({ children }) {
         .filter((item) => item.qty > 0)
     ),
     removeFromCart: (id) => setCart((current) => current.filter((item) => item.id !== id)),
+    addPromo: (newPromo) => {
+      const promo = {
+        id: Date.now().toString(),
+        kode: newPromo.kode.toUpperCase(),
+        deskripsi: newPromo.deskripsi,
+        diskon: Number(newPromo.diskon) || 0,
+        status: true,
+      };
+      setPromos((current) => [promo, ...current]);
+      return promo;
+    },
     checkout: () => {
       if (cart.length === 0) return null;
+      const total = cart.reduce((sum, item) => sum + item.harga * item.qty, 0);
       const order = {
         id: Date.now().toString(),
         items: cart,
-        total: cart.reduce((total, item) => total + item.harga * item.qty, 0),
+        total,
         createdAt: new Date().toISOString(),
       };
       setOrders((current) => [order, ...current]);
+      setTransactions((current) => [{
+        id: `TRX-${Date.now().toString().slice(-6)}`,
+        createdAt: order.createdAt,
+        total,
+        items: cart,
+      }, ...current]);
       setCart([]);
       return order;
     },

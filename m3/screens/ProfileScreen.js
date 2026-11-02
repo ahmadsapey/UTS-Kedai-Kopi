@@ -55,6 +55,14 @@ export default function ProfileScreen({ navigation }) {
         </TouchableOpacity>
       </View>
 
+      <View style={styles.promoCard}>
+        <Text style={styles.cardTitle}>Promo hari ini</Text>
+        <Text style={styles.cardText}>Temukan voucher kopi spesial dan penawaran menarik untuk pelanggan loyal.</Text>
+        <TouchableOpacity style={styles.tertiaryButton} onPress={() => navigation.navigate('PromoPublik')}>
+          <Text style={styles.tertiaryButtonText}>Lihat Promo</Text>
+        </TouchableOpacity>
+      </View>
+
       <Text style={styles.footer}>Kopi Kita • Aplikasi POS Demo</Text>
     </ScrollView>
   );
@@ -106,5 +114,8 @@ const styles = StyleSheet.create({
   managementCard: { backgroundColor: '#eee7de', padding: 17, borderRadius: 14, marginTop: 12, borderWidth: 1, borderColor: '#e0d3c8' },
   secondaryButton: { borderWidth: 1, borderColor: '#8a572d', padding: 11, borderRadius: 9, alignItems: 'center', marginTop: 13 },
   secondaryButtonText: { color: '#70421f', fontWeight: 'bold' },
+  promoCard: { backgroundColor: '#fff8f2', padding: 17, borderRadius: 14, marginTop: 12, borderWidth: 1, borderColor: '#eed8c0' },
+  tertiaryButton: { backgroundColor: '#d08a45', padding: 11, borderRadius: 9, alignItems: 'center', marginTop: 13 },
+  tertiaryButtonText: { color: '#fff', fontWeight: 'bold' },
   footer: { color: '#93877d', textAlign: 'center', fontSize: 12, marginTop: 22 },
 });

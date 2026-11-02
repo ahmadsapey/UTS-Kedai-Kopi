@@ -41,6 +41,14 @@ export default function DashboardScreen({ route, navigation }) {
         <Text style={styles.menuTitle}>👥 Manajemen Pelanggan</Text>
         <Text style={styles.menuSub}>Kelola profil pelanggan dan kategori member.</Text>
       </TouchableOpacity>
+      <TouchableOpacity style={styles.menuCard} onPress={() => navigation.navigate('Pemasaran')}>
+        <Text style={styles.menuTitle}>🎯 Pemasaran & Promo</Text>
+        <Text style={styles.menuSub}>Buat promo, kampanye, dan pengumuman terbaru.</Text>
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.menuCard} onPress={() => navigation.navigate('DashboardReport')}>
+        <Text style={styles.menuTitle}>📊 Laporan Bisnis</Text>
+        <Text style={styles.menuSub}>Lihat ringkasan pendapatan dan transaksi.</Text>
+      </TouchableOpacity>
 
       <Text style={styles.sectionTitle}>Pesanan terbaru</Text>
       {orders.length === 0 ? (
