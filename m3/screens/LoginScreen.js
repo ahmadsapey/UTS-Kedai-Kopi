@@ -22,53 +22,96 @@ export default function LoginScreen({ navigation }) {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.icon}>☕</Text>
-      <Text style={styles.title}>Login Admin</Text>
-      <Text style={styles.subtitle}>Masuk untuk mengelola kedai Kopi Kita.</Text>
-      <TextInput
-        style={styles.input}
-        placeholder="Email"
-        value={email}
-        onChangeText={setEmail}
-        autoCapitalize="none"
-        keyboardType="email-address"
-        autoComplete="email"
-        accessibilityLabel="Email"
-      />
-      <TextInput
-        style={styles.input}
-        placeholder="Password"
-        value={password}
-        onChangeText={setPassword}
-        secureTextEntry
-        autoComplete="password"
-        accessibilityLabel="Password"
-      />
-      <TouchableOpacity style={styles.primaryButton} onPress={handleLogin}>
-        <Text style={styles.primaryButtonText}>Masuk ke Manajemen</Text>
-      </TouchableOpacity>
-      <View style={styles.demoCard}>
-        <Text style={styles.demoTitle}>Akun demo</Text>
-        <Text style={styles.demoText}>Email: {DEMO_EMAIL}</Text>
-        <Text style={styles.demoText}>Password: {DEMO_PASSWORD}</Text>
-        <Text style={styles.note}>Akun ini hanya untuk demonstrasi lokal aplikasi.</Text>
+      <View style={styles.card}>
+        <Text style={styles.icon}>☕</Text>
+        <Text style={styles.title}>Login Admin</Text>
+        <Text style={styles.subtitle}>Masuk untuk mengelola kedai Kopi Kita.</Text>
+
+        <TextInput
+          style={styles.input}
+          placeholder="Email"
+          value={email}
+          onChangeText={setEmail}
+          autoCapitalize="none"
+          keyboardType="email-address"
+          autoComplete="email"
+          accessibilityLabel="Email"
+        />
+        <TextInput
+          style={styles.input}
+          placeholder="Password"
+          value={password}
+          onChangeText={setPassword}
+          secureTextEntry
+          autoComplete="password"
+          accessibilityLabel="Password"
+        />
+
+        <TouchableOpacity style={styles.primaryButton} onPress={handleLogin}>
+          <Text style={styles.primaryButtonText}>Masuk ke Manajemen</Text>
+        </TouchableOpacity>
+
+        <View style={styles.demoCard}>
+          <Text style={styles.demoTitle}>Akun demo</Text>
+          <Text style={styles.demoText}>Email: {DEMO_EMAIL}</Text>
+          <Text style={styles.demoText}>Password: {DEMO_PASSWORD}</Text>
+          <Text style={styles.note}>Akun ini hanya untuk demonstrasi lokal aplikasi.</Text>
+        </View>
+
+        <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
+          <Text style={styles.backText}>Kembali</Text>
+        </TouchableOpacity>
       </View>
-      <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
-        <Text style={styles.backText}>Kembali</Text>
-      </TouchableOpacity>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, justifyContent: 'center', padding: 22, backgroundColor: '#f7f4ef' },
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    padding: 22,
+    backgroundColor: '#f2eae1',
+  },
+  card: {
+    backgroundColor: '#fffaf7',
+    borderRadius: 20,
+    padding: 22,
+    borderWidth: 1,
+    borderColor: '#ead9ce',
+    shadowColor: '#3c2415',
+    shadowOffset: { width: 0, height: 8 },
+    shadowOpacity: 0.12,
+    shadowRadius: 14,
+    elevation: 5,
+  },
   icon: { fontSize: 42, textAlign: 'center', marginBottom: 8 },
   title: { color: '#3c2415', fontSize: 25, fontWeight: 'bold', textAlign: 'center' },
   subtitle: { color: '#71645a', textAlign: 'center', marginTop: 6, marginBottom: 22 },
-  input: { backgroundColor: '#fff', padding: 13, borderRadius: 10, borderWidth: 1, borderColor: '#e6ddd4', marginBottom: 12 },
-  primaryButton: { backgroundColor: '#8a572d', padding: 14, borderRadius: 10, alignItems: 'center' },
+  input: {
+    backgroundColor: '#fff',
+    padding: 13,
+    borderRadius: 12,
+    borderWidth: 1,
+    borderColor: '#e6ddd4',
+    marginBottom: 12,
+  },
+  primaryButton: {
+    backgroundColor: '#8a572d',
+    padding: 14,
+    borderRadius: 12,
+    alignItems: 'center',
+    marginTop: 4,
+  },
   primaryButtonText: { color: '#fff', fontWeight: 'bold', fontSize: 15 },
-  demoCard: { backgroundColor: '#eee7de', padding: 14, borderRadius: 10, marginTop: 20 },
+  demoCard: {
+    backgroundColor: '#eee7de',
+    padding: 14,
+    borderRadius: 12,
+    marginTop: 20,
+    borderWidth: 1,
+    borderColor: '#e3d0bd',
+  },
   demoTitle: { color: '#3c2415', fontWeight: 'bold', marginBottom: 5 },
   demoText: { color: '#4d4037', marginTop: 2 },
   note: { color: '#71645a', fontSize: 12, marginTop: 8 },

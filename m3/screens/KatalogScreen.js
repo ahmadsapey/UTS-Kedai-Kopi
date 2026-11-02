@@ -29,8 +29,11 @@ export default function KatalogScreen() {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.heading}>Menu Kopi Kita</Text>
-      <Text style={styles.intro}>Pilih menu favorit dan tambahkan ke keranjang.</Text>
+      <View style={styles.headerCard}>
+        <Text style={styles.heading}>Menu Kopi Kita</Text>
+        <Text style={styles.intro}>Pilih menu favorit dan tambahkan ke keranjang.</Text>
+      </View>
+
       <TextInput
         style={styles.searchInput}
         placeholder="Cari produk..."
@@ -46,6 +49,9 @@ export default function KatalogScreen() {
         renderItem={({ item }) => (
           <View style={styles.productCard}>
             <View style={styles.productDetails}>
+              <View style={styles.productBadge}>
+                <Text style={styles.productBadgeText}>Best Seller</Text>
+              </View>
               <Text style={styles.productName}>{item.nama}</Text>
               <Text style={styles.productPrice}>{formatRupiah(item.harga)}</Text>
             </View>
@@ -123,11 +129,36 @@ export default function KatalogScreen() {
 
 const styles = StyleSheet.create({
   container: { flex: 1, padding: 16, backgroundColor: '#f7f4ef' },
+  headerCard: {
+    backgroundColor: '#fffaf7',
+    padding: 14,
+    borderRadius: 14,
+    marginBottom: 12,
+    borderWidth: 1,
+    borderColor: '#ead9ce',
+  },
   heading: { fontSize: 23, fontWeight: 'bold', color: '#3c2415' },
-  intro: { color: '#71645a', marginTop: 4, marginBottom: 14 },
-  searchInput: { backgroundColor: '#fff', padding: 12, borderRadius: 10, borderWidth: 1, borderColor: '#e6ddd4', marginBottom: 12 },
-  productCard: { backgroundColor: '#fff', padding: 14, borderRadius: 12, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 9 },
+  intro: { color: '#71645a', marginTop: 4 },
+  searchInput: { backgroundColor: '#fff', padding: 12, borderRadius: 12, borderWidth: 1, borderColor: '#e6ddd4', marginBottom: 12 },
+  productCard: {
+    backgroundColor: '#fff',
+    padding: 14,
+    borderRadius: 12,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: 9,
+    borderWidth: 1,
+    borderColor: '#f0e3db',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.05,
+    shadowRadius: 5,
+    elevation: 2,
+  },
   productDetails: { flex: 1, paddingRight: 10 },
+  productBadge: { backgroundColor: '#f5e9dc', alignSelf: 'flex-start', paddingHorizontal: 8, paddingVertical: 4, borderRadius: 8, marginBottom: 8 },
+  productBadgeText: { color: '#8a572d', fontSize: 10, fontWeight: 'bold' },
   productName: { fontSize: 15, fontWeight: '600', color: '#34251b' },
   productPrice: { color: '#8a572d', marginTop: 5, fontSize: 13 },
   addButton: { backgroundColor: '#8a572d', paddingVertical: 9, paddingHorizontal: 12, borderRadius: 8 },

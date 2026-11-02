@@ -11,8 +11,8 @@ export default function DashboardScreen({ route, navigation }) {
   return (
     <ScrollView style={styles.container} contentContainerStyle={styles.content}>
       <View style={styles.welcomeCard}>
-        <Text style={styles.welcomeText}>Halo, Admin 👋</Text>
-        <Text style={styles.subText}>{userEmail}</Text>
+        <Text style={styles.greeting}>Halo, Admin 👋</Text>
+        <Text style={styles.userMail}>{userEmail}</Text>
         <Text style={styles.subText}>Selamat datang di manajemen Kopi Kita.</Text>
       </View>
 
@@ -64,19 +64,54 @@ export default function DashboardScreen({ route, navigation }) {
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: '#f7f4ef' },
   content: { padding: 16, paddingBottom: 28 },
-  welcomeCard: { backgroundColor: '#3c2415', padding: 18, borderRadius: 14, marginBottom: 20 },
-  welcomeText: { color: '#fff', fontSize: 21, fontWeight: 'bold' },
-  subText: { color: '#eaded2', marginTop: 5 },
+  welcomeCard: {
+    backgroundColor: '#3c2415',
+    padding: 18,
+    borderRadius: 16,
+    marginBottom: 20,
+    shadowColor: '#3c2415',
+    shadowOffset: { width: 0, height: 8 },
+    shadowOpacity: 0.18,
+    shadowRadius: 12,
+    elevation: 5,
+  },
+  greeting: { color: '#fff', fontSize: 23, fontWeight: 'bold' },
+  userMail: { color: '#f1dfd0', fontSize: 13, marginTop: 6 },
+  subText: { color: '#eaded2', marginTop: 6 },
   sectionTitle: { color: '#34251b', fontSize: 17, fontWeight: 'bold', marginBottom: 10, marginTop: 3 },
-  statsRow: { flexDirection: 'row', marginBottom: 20 },
-  statCard: { flex: 1, backgroundColor: '#fff', padding: 13, borderRadius: 11, alignItems: 'center', marginRight: 8 },
+  statsRow: { flexDirection: 'row', justifyContent: 'space-between', marginBottom: 20 },
+  statCard: {
+    flex: 1,
+    backgroundColor: '#fff',
+    padding: 14,
+    borderRadius: 12,
+    alignItems: 'center',
+    marginRight: 8,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.05,
+    shadowRadius: 6,
+    elevation: 2,
+  },
   statNumber: { color: '#8a572d', fontSize: 22, fontWeight: 'bold' },
   statLabel: { color: '#71645a', fontSize: 12, marginTop: 3 },
-  menuCard: { backgroundColor: '#fff', padding: 16, borderRadius: 12, marginBottom: 9 },
+  menuCard: {
+    backgroundColor: '#fff',
+    padding: 16,
+    borderRadius: 12,
+    marginBottom: 9,
+    borderWidth: 1,
+    borderColor: '#efe4da',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.04,
+    shadowRadius: 6,
+    elevation: 2,
+  },
   menuTitle: { color: '#3c2415', fontSize: 16, fontWeight: 'bold' },
   menuSub: { color: '#71645a', fontSize: 13, marginTop: 5 },
   emptyText: { color: '#71645a', backgroundColor: '#fff', padding: 14, borderRadius: 10, marginBottom: 10 },
-  orderCard: { backgroundColor: '#fff', padding: 13, borderRadius: 10, marginBottom: 8 },
+  orderCard: { backgroundColor: '#fff', padding: 13, borderRadius: 10, marginBottom: 8, borderWidth: 1, borderColor: '#efe4da' },
   orderTitle: { color: '#3c2415', fontWeight: 'bold' },
   orderDetails: { color: '#71645a', marginTop: 4 },
   logoutButton: { backgroundColor: '#a13c32', padding: 13, borderRadius: 10, alignItems: 'center', marginTop: 16 },
